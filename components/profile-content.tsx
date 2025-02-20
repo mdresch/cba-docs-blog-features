@@ -15,6 +15,7 @@ const user = {
   email: "john@example.com",
   bio: "I'm a software developer passionate about building great products.",
   badges: ["New Member", "First Post", "10 Posts"],
+  picture: "blog/authors/John.jpeg"
 }
 
 export function ProfileContent() {

@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
 
 const docsDirectory = path.join(process.cwd(), "docs");
 
@@ -38,8 +39,6 @@ export async function getAllDocs() {
   }
 }
 
-
-
 export async function getDocBySlug(slug: string) {
   try {
     const categories = await fs.readdir(docsDirectory);
@@ -53,10 +52,12 @@ export async function getDocBySlug(slug: string) {
         const fileContents = await fs.readFile(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
+        const mdxSource = await serialize(content);
+
         return {
           slug,
           title: data.title,
-          content,
+          content: mdxSource,
           category,
         };
       }

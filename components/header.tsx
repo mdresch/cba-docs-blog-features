@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { useAuth } from "@/lib/auth-context"
-import { usePathname } from "next/navigation"
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useAuth } from "@/lib/auth-context";
+import { usePathname } from "next/navigation";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,17 +12,18 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
-import { routeDescriptions } from "@/lib/route-descriptions"
+} from "@/components/ui/breadcrumb";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { routeDescriptions } from "@/lib/route-descriptions";
+import Avatar from "@/components/posts/avatar"; // Import the Avatar component
 
 export function Header() {
-  const { isSignedIn, signOut } = useAuth()
-  const pathname = usePathname()
+  const { isSignedIn, signOut, user } = useAuth(); // Ensure user data is available
+  const pathname = usePathname();
 
   const getDescription = (segment: string) => {
-    return routeDescriptions[segment.toLowerCase()] || `Page for ${segment}`
-  }
+    return routeDescriptions[segment.toLowerCase()] || `Page for ${segment}`;
+  };
 
   return (
     <header className="flex items-center justify-between px-4 py-2 bg-background border-b">
@@ -68,9 +69,12 @@ export function Header() {
 
       <div className="flex items-center space-x-2">
         {isSignedIn ? (
-          <Button variant="ghost" onClick={signOut}>
-            Sign Out
-          </Button>
+          <>
+            {user && <Avatar name={user.name} picture={user.picture} />} {/* Display the avatar */}
+            <Button variant="ghost" onClick={signOut}>
+              Sign Out
+            </Button>
+          </>
         ) : (
           <>
             <Button variant="ghost" asChild>
@@ -83,6 +87,5 @@ export function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
-
