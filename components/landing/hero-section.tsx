@@ -19,10 +19,10 @@ export function HeroSection() {
           growth.
         </p>
         <div className="mt-10 flex items-center gap-x-6">
-          <Button asChild>
+          <Button asChild ariaLabel="Sign up for an account">
             <Link href="/auth/signup">Get Started</Link>
           </Button>
-          <Button variant="secondary" asChild>
+          <Button variant="secondary" asChild ariaLabel="See our features">
             <Link href="#features">Learn More</Link>
           </Button>
         </div>

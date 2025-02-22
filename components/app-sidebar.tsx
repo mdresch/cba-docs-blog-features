@@ -11,6 +11,7 @@ import {
   Users,
   Trophy,
   Lightbulb,
+  Pencil,
 } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
@@ -39,6 +40,7 @@ const menuItems = {
     { icon: FileText, label: "Blog", href: "/posts" },
     { icon: MessageSquare, label: "Forum", href: "/forum" },
     { icon: Book, label: "Documentation", href: "/docs" },
+    { icon: Pencil, label: "Editor", href: "/docs/editor" },
   ],
   community: [
     { icon: MessageSquare, label: "Posts", href: "/community/posts" },
